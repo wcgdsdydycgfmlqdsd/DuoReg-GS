@@ -81,7 +81,6 @@
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
 
@@ -96,10 +95,20 @@
     <!-- scenes. -->
     <div class="column has-text-centered">
       <span><strong style="font-size: 1.5rem; color: gray;">Scenes: &nbsp;&nbsp;&nbsp; </strong></span>
-      <button class="button-17-selected" role="button" id="btn_barn_flip" onclick="changeSceneFLIP(this.innerText)">Barn</button>
-      <button class="button-17" role="button" id="btn_horns_flip" onclick="changeSceneFLIP(this.innerText)">horns</button>
-      <button class="button-17" role="button" id="btn_bonsia_flip" onclick="changeSceneFLIP(this.innerText)">bonsia</button>
-      <button class="button-17" role="button" id="btn_counter_flip" onclick="changeSceneFLIP(this.innerText)">counter</button>
+      <button class="button-17" role="button" id="btn_corner_flip" onclick="changeSceneFLIP(this.innerText)">Corner</button>
+      <button class="button-17" role="button" id="btn_fountain_flip" onclick="changeSceneFLIP(this.innerText)">Fountain</button>
+      <button class="button-17" role="button" id="btn_mountain_flip" onclick="changeSceneFLIP(this.innerText)">Mountain</button>
+      <button class="button-17" role="button" id="btn_patio_flip" onclick="changeSceneFLIP(this.innerText)">Patio</button>
+      <button class="button-17" role="button" id="btn_patio-high_flip" onclick="changeSceneFLIP(this.innerText)">Patio-High</button>
+      <button class="button-17-selected" role="button" id="btn_spot_flip" onclick="changeSceneFLIP(this.innerText)">Spot</button>
+    </div>
+    <!-- scenes. -->
+    <!-- scenes. -->
+    <div class="column has-text-centered">
+      <button class="button-17" role="button" id="btn_android_flip" onclick="changeSceneFLIP(this.innerText)">Android</button>
+      <button class="button-17" role="button" id="btn_crab2_flip" onclick="changeSceneFLIP(this.innerText)">Crab2</button>
+      <button class="button-17" role="button" id="btn_statue_flip" onclick="changeSceneFLIP(this.innerText)">Statue</button>
+      <button class="button-17" role="button" id="btn_yoda_flip" onclick="changeSceneFLIP(this.innerText)">Yoda</button>
     </div>
     <!-- scenes. -->
 
@@ -109,8 +118,7 @@
             <div class="content">
                 <div class="columns is-centered">
                     <div class="column is-full-width has-text-centered">
-                        <!-- 修改了默认加载的视频 -->
-                        <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/barn_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
+                        <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/spot_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
                         <canvas class="videoMerge" id="flipvideoMerge" style="width: 35vw; display: block; margin: 0 auto;"></canvas>
                     </div>
                 </div>
@@ -123,8 +131,8 @@
     <div class="column has-text-centered">
       <span><strong style="font-size: 1.5rem; color: gray;">Methods: &nbsp;&nbsp;&nbsp; </strong></span>
       <button class="button-17-selected" role="button" id="btn_3DGS_method" onclick="changeMethodFLIP('3DGS')">3DGS</button>
-      <button class="button-17" role="button" id="btn_DropGaussian_method" onclick="changeMethodFLIP('DropGaussian')">DropGaussian</button>
-      <button class="button-17" role="button" id="btn_CoR-GS_method" onclick="changeMethodFLIP('CoR-GS')">CoR-GS</button>
+      <button class="button-17" role="button" id="btn_SpotLessSplats_method" onclick="changeMethodFLIP('SpotLessSplats')">SpotLessSplats</button>
+      <button class="button-17" role="button" id="btn_Robust3DGS_method" onclick="changeMethodFLIP('Robust3DGS')">Robust3DGS</button>
     </div>
     <script>
       if (document.readyState === 'loading') {
@@ -147,6 +155,7 @@
 
 
 
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -155,9 +164,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            3D Gaussian Splatting (3DGS) has achieved remarkable success in novel view synthesis. However, 3DGS severely overfits to training views in the sparse-view setting due to insufficient constraints, leading to the creation of floating artifacts that are inconsistent with the correct geometry, and results in blurry backgrounds with significant detail loss in novel views. Our analysis reveals that this degradation arises not only from the lack of geometric regularization under photometric-only supervision, but also from the significant overlap between the opacity distributions of floating artifacts and valid scene Gaussians, which makes opacity-based pruning ineffective in distinguishing between them.
-To address these challenges, we propose DuoReg-GS, an asymmetric dual-regularized framework that is based on two critical designs. First, we develop Asymmetric Dual-Model Regularization to train two parallel 3DGS models with different densification and pruning strategies, enforcing cross-model depth consistency and geometric filtering to suppress artifacts while preserving structural fidelity. Second, we introduce Opacity Perturbation Regularization to periodically reset and constrain the opacity during training, decoupling floating artifacts from valid scene Gaussians in the opacity distribution and promoting view-consistent appearance learning. Extensive experiments demonstrate that our method achieves state-of-the-art performance in the sparse-view settings of standard benchmark datasets. 
-Our code will be made publicly available.
+            3D Gaussian Splatting (3DGS) has gained significant attention for its real-time, photo-realistic rendering in novel-view synthesis and 3D modeling. 
+            However, existing methods struggle with accurately modeling scenes affected by transient objects, leading to artifacts in the rendered images.
+            We identify that the Gaussian densification process, while enhancing scene detail capture, unintentionally contributes to these artifacts by growing additional Gaussians that model transient disturbances.
+            To address this, we propose RobustSplat, a robust solution based on two critical designs. 
+            First, we introduce a delayed Gaussian growth strategy that prioritizes optimizing static scene structure before allowing Gaussian splitting/cloning, mitigating overfitting to transient objects in early optimization. 
+            Second, we design a scale-cascaded mask bootstrapping approach that first leverages lower-resolution feature similarity supervision for reliable initial transient mask estimation, taking advantage of its stronger semantic consistency and robustness to noise, and then progresses to high-resolution supervision to achieve more precise mask prediction.
+            Extensive experiments on multiple challenging datasets show that our method outperforms existing methods, clearly demonstrating the robustness and effectiveness of our method. 
           </p>
         </div>
       </div>
@@ -165,6 +178,8 @@ Our code will be made publicly available.
     <!--/ Abstract. -->
   </div>
 </section>
+
+
 
 
 <section class="section">
@@ -212,12 +227,12 @@ Our code will be made publicly available.
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Methodology</h2>
-        <img src="./static/images/pipeline.pdf" alt="Pipeline">
+        <img src="./static/images/pipeline.jpg" alt="Pipeline">
         <div class="content has-text-justified">
           <p>
-            Overview of the proposed DuoReg-GS.
-    Given a set of sparse input views, DuoReg-GS trains two 3DGS models with asymmetric densification, which amplify the spatial discrepancies between valid scene Gaussians and floating artifacts. These artifacts are then suppressed using a depth-alignment loss within each model and are removed through collaborative geometric filtering across the two models.
-    To further decouple artifacts from true scene geometry, Opacity Perturbation Regularization (OPR) randomizes Gaussian opacity at each iteration, leading to a progressive decay in the opacity of artifacts and enabling their removal via the native opacity-based pruning in 3DGS. After training, the primary model is used for novel view synthesis.
+            We introduce RobustSplat, a robust framework for transient-free 3D Gaussian Splatting, effectively mitigating artifacts caused by transient objects in dynamic scenes. 
+            Built on our analysis on the relation between Gaussians densification and artifacts caused by transient objects, 
+            our approach integrates a delayed Gaussian growth strategy to prioritize static scene optimization and a scale-cascaded mask bootstrapping method for reliable transient object suppression.
           </p>
         </div>
 
@@ -243,6 +258,18 @@ Our code will be made publicly available.
 </section>
 
 
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{2025robustsplat,
+      author    = {Chuanyu Fu, Yuqi Zhang, Kunbin Yao, Guanying Chen, Yuan Xiong, Chuan Huang, Shuguang Cui, Xiaochun Cao},
+      title     = {RobustSplat: Decoupling Densification and Dynamics for Transient-Free 3DGS},
+      booktitle = {arXiv preprint arXiv:2506.02751},
+      year      = {2025},
+    }</code></pre>
+  </div>
+</section>
 
 
 <footer class="footer">
