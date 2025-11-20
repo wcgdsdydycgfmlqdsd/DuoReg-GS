@@ -95,20 +95,10 @@
     <!-- scenes. -->
     <div class="column has-text-centered">
       <span><strong style="font-size: 1.5rem; color: gray;">Scenes: &nbsp;&nbsp;&nbsp; </strong></span>
-      <button class="button-17" role="button" id="btn_corner_flip" onclick="changeSceneFLIP(this.innerText)">Corner</button>
-      <button class="button-17" role="button" id="btn_fountain_flip" onclick="changeSceneFLIP(this.innerText)">Fountain</button>
-      <button class="button-17" role="button" id="btn_mountain_flip" onclick="changeSceneFLIP(this.innerText)">Mountain</button>
-      <button class="button-17" role="button" id="btn_patio_flip" onclick="changeSceneFLIP(this.innerText)">Patio</button>
-      <button class="button-17" role="button" id="btn_patio-high_flip" onclick="changeSceneFLIP(this.innerText)">Patio-High</button>
-      <button class="button-17-selected" role="button" id="btn_spot_flip" onclick="changeSceneFLIP(this.innerText)">Spot</button>
-    </div>
-    <!-- scenes. -->
-    <!-- scenes. -->
-    <div class="column has-text-centered">
-      <button class="button-17" role="button" id="btn_android_flip" onclick="changeSceneFLIP(this.innerText)">Android</button>
-      <button class="button-17" role="button" id="btn_crab2_flip" onclick="changeSceneFLIP(this.innerText)">Crab2</button>
-      <button class="button-17" role="button" id="btn_statue_flip" onclick="changeSceneFLIP(this.innerText)">Statue</button>
-      <button class="button-17" role="button" id="btn_yoda_flip" onclick="changeSceneFLIP(this.innerText)">Yoda</button>
+      <button class="button-17" role="button" id="btn_corner_flip" onclick="changeSceneFLIP(this.innerText)">Barn</button>
+      <button class="button-17" role="button" id="btn_fountain_flip" onclick="changeSceneFLIP(this.innerText)">bonsia</button>
+      <button class="button-17" role="button" id="btn_mountain_flip" onclick="changeSceneFLIP(this.innerText)">counter</button>
+      <button class="button-17" role="button" id="btn_patio_flip" onclick="changeSceneFLIP(this.innerText)">horns</button>
     </div>
     <!-- scenes. -->
 
@@ -118,7 +108,8 @@
             <div class="content">
                 <div class="columns is-centered">
                     <div class="column is-full-width has-text-centered">
-                        <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/spot_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
+                        <!-- <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/spot_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video> -->
+                        <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/horns_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
                         <canvas class="videoMerge" id="flipvideoMerge" style="width: 35vw; display: block; margin: 0 auto;"></canvas>
                     </div>
                 </div>
@@ -130,9 +121,12 @@
     <!-- method -->
     <div class="column has-text-centered">
       <span><strong style="font-size: 1.5rem; color: gray;">Methods: &nbsp;&nbsp;&nbsp; </strong></span>
+      <!-- <button class="button-17-selected" role="button" id="btn_3DGS_method" onclick="changeMethodFLIP('3DGS')">3DGS</button> -->
+      <!-- <button class="button-17" role="button" id="btn_SpotLessSplats_method" onclick="changeMethodFLIP('SpotLessSplats')">SpotLessSplats</button>
+      <button class="button-17" role="button" id="btn_Robust3DGS_method" onclick="changeMethodFLIP('Robust3DGS')">Robust3DGS</button> -->
+      <button class="button-17" role="button" id="btn_SpotLessSplats_method" onclick="changeMethodFLIP('DropGaussian')">DropGaussian</button>
+      <button class="button-17" role="button" id="btn_Robust3DGS_method" onclick="changeMethodFLIP('CoR-GS')">CoR-GS</button>
       <button class="button-17-selected" role="button" id="btn_3DGS_method" onclick="changeMethodFLIP('3DGS')">3DGS</button>
-      <button class="button-17" role="button" id="btn_SpotLessSplats_method" onclick="changeMethodFLIP('SpotLessSplats')">SpotLessSplats</button>
-      <button class="button-17" role="button" id="btn_Robust3DGS_method" onclick="changeMethodFLIP('Robust3DGS')">Robust3DGS</button>
     </div>
     <script>
       if (document.readyState === 'loading') {
@@ -227,7 +221,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Methodology</h2>
-        <img src="./static/images/pipeline.jpg" alt="Pipeline">
+        <img src="./static/images/pipeline_1.png" alt="Pipeline">
         <div class="content has-text-justified">
           <p>
             We introduce RobustSplat, a robust framework for transient-free 3D Gaussian Splatting, effectively mitigating artifacts caused by transient objects in dynamic scenes. 
