@@ -28,39 +28,89 @@
 	}
 	// --- START OF THE RELEVANT PART ---
 	// !! MODIFY HERE: Set your default scene !!
-	var currentSceneFLIP = 'Barn'; 
+	var currentSceneFLIP = 'horns';  // Match the default selected button in HTML 
 	var currentMethodFLIP = '3DGS';
 	function changeSceneFLIP(scene) {
 	    var video = document.getElementById('flipvideo');
-	    // Path construction: video/sceneNameLowercase_methodName_video_loop.mp4
-	    var new_src = 'video/' + scene.toLowerCase() + '_' + currentMethodFLIP + '_video_loop.mp4';
-	    if (currentSceneFLIP == scene.toLowerCase()) {
+	    var sceneName = scene.toLowerCase();
+	    var new_src = 'video/' + sceneName + '_' + currentMethodFLIP + '_video_loop.mp4';
+
+	    console.log('changeSceneFLIP called with:', scene);
+	    console.log('Current scene:', currentSceneFLIP);
+	    console.log('New scene name:', sceneName);
+	    console.log('Video path:', new_src);
+
+	    if (currentSceneFLIP === sceneName) {
+	        console.log('Same scene, returning');
 	        return;
 	    }
-	    // Update button styles
-	    document.getElementById('btn_' + currentSceneFLIP + '_flip').classList.remove('button-17-selected');
-	    document.getElementById('btn_' + currentSceneFLIP + '_flip').classList.add('button-17');
-	    currentSceneFLIP = scene.toLowerCase();
-	    document.getElementById('btn_' + currentSceneFLIP + '_flip').classList.remove('button-17');
-	    document.getElementById('btn_' + currentSceneFLIP + '_flip').classList.add('button-17-selected');
+
+	    // Update button styles - remove old selection
+	    var oldButton = document.getElementById('btn_' + currentSceneFLIP + '_flip');
+	    if (oldButton) {
+	        oldButton.classList.remove('button-17-selected');
+	        oldButton.classList.add('button-17');
+	        console.log('Removed selection from old button:', 'btn_' + currentSceneFLIP + '_flip');
+	    } else {
+	        console.log('Old button not found:', 'btn_' + currentSceneFLIP + '_flip');
+	    }
+
+	    // Update current scene
+	    currentSceneFLIP = sceneName;
+
+	    // Update button styles - add new selection
+	    var newButton = document.getElementById('btn_' + currentSceneFLIP + '_flip');
+	    if (newButton) {
+	        newButton.classList.remove('button-17');
+	        newButton.classList.add('button-17-selected');
+	        console.log('Added selection to new button:', 'btn_' + currentSceneFLIP + '_flip');
+	    } else {
+	        console.log('New button not found:', 'btn_' + currentSceneFLIP + '_flip');
+	    }
+
 	    // Load new video
+	    console.log('Loading video:', new_src);
 	    video.src = new_src;
+	    video.load(); // Explicitly load the new video
 	}
 	function changeMethodFLIP(method) {
+	    console.log('changeMethodFLIP called with:', method);
+	    console.log('Current method:', currentMethodFLIP);
+
 	    if (currentMethodFLIP === method) {
+	        console.log('Same method, returning');
 	        return;
 	    }
-	    // Update button styles
-	    document.getElementById('btn_' + currentMethodFLIP + '_method').classList.remove('button-17-selected');
-	    document.getElementById('btn_' + currentMethodFLIP + '_method').classList.add('button-17');
+
+	    // Update button styles - remove old selection
+	    var oldButton = document.getElementById('btn_' + currentMethodFLIP + '_method');
+	    if (oldButton) {
+	        oldButton.classList.remove('button-17-selected');
+	        oldButton.classList.add('button-17');
+	        console.log('Removed selection from old method button:', 'btn_' + currentMethodFLIP + '_method');
+	    } else {
+	        console.log('Old method button not found:', 'btn_' + currentMethodFLIP + '_method');
+	    }
+
+	    // Update current method
 	    currentMethodFLIP = method;
-	    document.getElementById('btn_' + currentMethodFLIP + '_method').classList.remove('button-17');
-	    document.getElementById('btn_' + currentMethodFLIP + '_method').classList.add('button-17-selected');
+
+	    // Update button styles - add new selection
+	    var newButton = document.getElementById('btn_' + currentMethodFLIP + '_method');
+	    if (newButton) {
+	        newButton.classList.remove('button-17');
+	        newButton.classList.add('button-17-selected');
+	        console.log('Added selection to new method button:', 'btn_' + currentMethodFLIP + '_method');
+	    } else {
+	        console.log('New method button not found:', 'btn_' + currentMethodFLIP + '_method');
+	    }
+
 	    // Load new video
 	    var video = document.getElementById('flipvideo');
-	    // Path construction: video/sceneName_methodName_video_loop.mp4
 	    var new_src = 'video/' + currentSceneFLIP + '_' + currentMethodFLIP + '_video_loop.mp4';
+	    console.log('Loading method video:', new_src);
 	    video.src = new_src;
+	    video.load(); // Explicitly load the new video
 	}
 	function resizeAndPlay(element)
 	{
