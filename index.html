@@ -171,13 +171,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            3D Gaussian Splatting (3DGS) has gained significant attention for its real-time, photo-realistic rendering in novel-view synthesis and 3D modeling. 
-            However, existing methods struggle with accurately modeling scenes affected by transient objects, leading to artifacts in the rendered images.
-            We identify that the Gaussian densification process, while enhancing scene detail capture, unintentionally contributes to these artifacts by growing additional Gaussians that model transient disturbances.
-            To address this, we propose RobustSplat, a robust solution based on two critical designs. 
-            First, we introduce a delayed Gaussian growth strategy that prioritizes optimizing static scene structure before allowing Gaussian splitting/cloning, mitigating overfitting to transient objects in early optimization. 
-            Second, we design a scale-cascaded mask bootstrapping approach that first leverages lower-resolution feature similarity supervision for reliable initial transient mask estimation, taking advantage of its stronger semantic consistency and robustness to noise, and then progresses to high-resolution supervision to achieve more precise mask prediction.
-            Extensive experiments on multiple challenging datasets show that our method outperforms existing methods, clearly demonstrating the robustness and effectiveness of our method. 
+            3D Gaussian Splatting (3DGS) has achieved remarkable success in novel view synthesis. However, 3DGS severely overfits to training views in the sparse-view setting due to insufficient constraints, leading to the creation of floating artifacts that are inconsistent with the correct geometry, and results in blurry backgrounds with significant detail loss in novel views. 
+            Our analysis reveals that this degradation arises not only from the lack of geometric regularization under photometric-only supervision, but also from the significant overlap between the opacity distributions of floating artifacts and valid scene Gaussians, which makes opacity-based pruning ineffective in distinguishing between them.
+            To address these challenges, we propose DuoReg-GS, an asymmetric dual-regularized framework that is based on two critical designs.
+            First, we develop Asymmetric Dual-Model Regularization to train two parallel 3DGS models with different densification and pruning strategies, enforcing cross-model depth consistency and geometric filtering to suppress artifacts while preserving structural fidelity.
+            Second, we introduce Opacity Perturbation Regularization to periodically reset and constrain the opacity during training, decoupling floating artifacts from valid scene Gaussians in the opacity distribution and promoting view-consistent appearance learning.
+            Extensive experiments demonstrate that our method achieves state-of-the-art performance in the sparse-view settings of standard benchmark datasets. 
+            Our code will be made publicly available.
           </p>
         </div>
       </div>
@@ -201,11 +201,11 @@
           </p>
         </div>
         <video id="motivation_patiohigh" autoplay controls muted loop playsinline height="100%">
-          <source src="video/motivation_patiohigh.mp4" type="video/mp4">
+          <source src="video/train-artifacts-bicycle.mp4" type="video/mp4">
         </video>
         <p></p>
         <video id="motivation_mountain" autoplay controls muted loop playsinline height="100%">
-          <source src="video/motivation_mountain.mp4" type="video/mp4">
+          <source src="video/train-artifacts-barn.mp4" type="video/mp4">
         </video>
         <div style="height: 40px;"></div>
         <h3 class="title is-5">Analysis of Gaussian densification in transient object fitting</h3>
@@ -237,9 +237,9 @@
         <img src="./static/images/pipeline_1.png" alt="Pipeline">
         <div class="content has-text-justified">
           <p>
-            We introduce RobustSplat, a robust framework for transient-free 3D Gaussian Splatting, effectively mitigating artifacts caused by transient objects in dynamic scenes. 
-            Built on our analysis on the relation between Gaussians densification and artifacts caused by transient objects, 
-            our approach integrates a delayed Gaussian growth strategy to prioritize static scene optimization and a scale-cascaded mask bootstrapping method for reliable transient object suppression.
+            Overview of the proposed DuoReg-GS.
+            Given a set of sparse input views, DuoReg-GS trains two 3DGS models with asymmetric densification, which amplify the spatial discrepancies between valid scene Gaussians and floating artifacts. These artifacts are then suppressed using a depth-alignment loss within each model and are removed through collaborative geometric filtering across the two models.
+            To further decouple artifacts from true scene geometry, Opacity Perturbation Regularization (OPR) randomizes Gaussian opacity at each iteration, leading to a progressive decay in the opacity of artifacts and enabling their removal via the native opacity-based pruning in 3DGS. After training, the primary model is used for novel view synthesis.
           </p>
         </div>
 
