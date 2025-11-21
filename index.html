@@ -98,8 +98,8 @@
 	      <span><strong style="font-size: 1.5rem; color: gray;">Scenes: &nbsp;&nbsp;&nbsp; </strong></span>
 	      <!-- Barn 按钮不再是默认选中 -->
 	      <button class="button-17" role="button" id="btn_barn_flip" onclick="changeSceneFLIP(this.innerText)">Barn</button>
-	      <button class="button-17" role="button" id="btn_bonsai_flip" onclick="changeSceneFLIP(this.innerText)">bonsai</button>
-	      <button class="button-17" role="button" id="btn_counter_flip" onclick="changeSceneFLIP(this.innerText)">counter</button>
+	      <button class="button-17" role="button" id="btn_stump_flip" onclick="changeSceneFLIP(this.innerText)">stump</button>
+	      <!-- <button class="button-17" role="button" id="btn_counter_flip" onclick="changeSceneFLIP(this.innerText)">counter</button> -->
 	      <!-- horns 按钮设为默认选中 -->
 	      <button class="button-17-selected" role="button" id="btn_horns_flip" onclick="changeSceneFLIP(this.innerText)">horns</button>
 	    </div>
@@ -208,13 +208,12 @@
           <source src="video/train-artifacts-barn.mp4" type="video/mp4">
         </video>
         <div style="height: 40px;"></div>
-        <h3 class="title is-5">Analysis of Gaussian densification in transient object fitting</h3>
-        <img src="./static/images/densification_analysis.jpg" alt="Densification Analysis" style="width: 66%; display: block; margin: 0 auto;">
+        <h3 class="title is-5">Opacity Coupling between Artifacts and Structural Gaussians</h3>
+        <img src="./static/images/opacity.png" alt="Densification Analysis" style="width: 66%; display: block; margin: 0 auto;">
         <div class="content has-text-justified">
           <p>
-            As training progresses, vanilla 3DGS suffers from performance degradation and exhibits artifacts due to the increasing number of Gaussians. 
-            Disabling Gaussian densification notably improves the results, even achieving performance comparable to the recent robust method SpotLessSplats. 
-            Despite producing transient-free rendering, 3DGS w/o densification struggles to recover fine details in regions with sparse Gaussian initialization (highlighted by red arrows).
+            Comparison of opacity distributions across training iterations using 3DGS.
+            The opacity of floating artifacts overlaps significantly with that of structural Gaussians, indicating that their opacity evolves jointly during training and cannot be decoupled by simple opacity-based pruning.
           </p>
         </div>
       </div>
