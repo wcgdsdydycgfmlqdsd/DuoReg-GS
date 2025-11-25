@@ -81,85 +81,54 @@
   </div>
 </section>
 
-	<!-- =================================================== -->
-	<!-- 用下面这段代码替换原来的第一个 <section> -->
-	<!-- =================================================== -->
-	<section class="section">
-	  <div class="container is-max-desktop">
-	    <!-- Animation title. -->
-	    <div class="columns is-centered has-text-centered">
-	      <div class="column is-full-width">
-	        <h2 class="title is-3">Animation Results</h2>
-	      </div>
-	    </div>
-	    <!--/ Animation title. -->
-	    <!-- scenes. -->
-	    <div class="column has-text-centered">
-	      <span><strong style="font-size: 1.5rem; color: gray;">Scenes: &nbsp;&nbsp;&nbsp; </strong></span>
-	      <!-- Barn 按钮不再是默认选中 -->
-	      <button class="button-17" role="button" id="btn_barn_flip" onclick="changeSceneFLIP(this.innerText)">Barn</button>
-	      <button class="button-17" role="button" id="btn_family_flip" onclick="changeSceneFLIP(this.innerText)">Family</button>
-	      <button class="button-17" role="button" id="btn_stump_flip" onclick="changeSceneFLIP(this.innerText)">stump</button>
-	      <!-- horns 按钮设为默认选中 -->
-	      <button class="button-17-selected" role="button" id="btn_horns_flip" onclick="changeSceneFLIP(this.innerText)">horns</button>
-	    </div>
-	    <!-- scenes. -->
-
-	    <!-- methods. -->
-	    <div class="column has-text-centered" style="margin-top: 10px;">
-	      <span><strong style="font-size: 1.5rem; color: gray;">Methods: &nbsp;&nbsp;&nbsp; </strong></span>
-	      <button class="button-17-selected" role="button" id="btn_3DGS_method" onclick="changeMethodFLIP('3DGS')">3DGS</button>
-	      <button class="button-17" role="button" id="btn_CoR-GS_method" onclick="changeMethodFLIP('CoR-GS')">CoR-GS</button>
-	      <button class="button-17" role="button" id="btn_DropGaussian_method" onclick="changeMethodFLIP('DropGaussian')">DropGaussian</button>
-	    </div>
-	    <!-- methods. -->
-
-	    <!-- comparison. -->
-	    <div class="columns is-centered">
-	        <div class="column">
-	            <div class="content">
-	                <div class="columns is-centered">
-	                    <div class="column is-full-width has-text-centered">
-	                        <!--
-	                            !! 关键修改 !!
-	                            默认视频源修改为 horns 场景
-	                        -->
-	                        <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/horns_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
-	                        <canvas class="videoMerge" id="flipvideoMerge" style="width: 35vw; display: block; margin: 0 auto;"></canvas>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	    <!-- comparison. -->
-	    <!-- method -->
-	    <div class="column has-text-centered">
-	      <span><strong style="font-size: 1.5rem; color: gray;">Methods: &nbsp;&nbsp;&nbsp; </strong></span>
-	      <!-- 3DGS 保持为默认选中 -->
-	      <button class="button-17-selected" role="button" id="btn_3DGS_method" onclick="changeMethodFLIP('3DGS')">3DGS</button>
-	      <button class="button-17" role="button" id="btn_DropGaussian_method" onclick="changeMethodFLIP('DropGaussian')">DropGaussian</button>
-	      <button class="button-17" role="button" id="btn_CoR-GS_method" onclick="changeMethodFLIP('CoR-GS')">CoR-GS</button>
-	    </div>
-	    <script>
-	      if (document.readyState === 'loading') {
-	        document.addEventListener('DOMContentLoaded', function() {
-	          document.getElementById('flipvideo').onplay = function() {
-	            resizeAndPlay(this);
-	          };
-	        });
-	      } else {
-	        document.getElementById('flipvideo').onplay = function() {
-	          resizeAndPlay(this);
-	        };
-	      }
-	    </script>
-	    <!-- method -->
-	  </div>
-	</section>
-	<!-- =================================================== -->
-	<!-- 替换结束 -->
-	<!-- =================================================== -->
-
+<section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation Results</h2>
+        </div>
+      </div>
+      <div class="column has-text-centered">
+        <span><strong style="font-size: 1.5rem; color: gray;">Scenes: &nbsp;&nbsp;&nbsp; </strong></span>
+        <button class="button-17" role="button" id="btn_barn_flip" onclick="changeSceneFLIP(this.innerText)">Barn</button>
+        <button class="button-17" role="button" id="btn_family_flip" onclick="changeSceneFLIP(this.innerText)">Family</button>
+        <button class="button-17" role="button" id="btn_stump_flip" onclick="changeSceneFLIP(this.innerText)">stump</button>
+        <button class="button-17-selected" role="button" id="btn_horns_flip" onclick="changeSceneFLIP(this.innerText)">horns</button>
+      </div>
+      <div class="columns is-centered">
+          <div class="column">
+              <div class="content">
+                  <div class="columns is-centered">
+                      <div class="column is-full-width has-text-centered">
+                          <video class="video" id="flipvideo" loop="" playsinline="" autoplay="" muted="" src="video/horns_3DGS_video_loop.mp4" onplay="resizeAndPlay(this)" style="height: 0px;"></video>
+                          <canvas class="videoMerge" id="flipvideoMerge" style="width: 35vw; display: block; margin: 0 auto;"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="column has-text-centered">
+        <span><strong style="font-size: 1.5rem; color: gray;">Methods: &nbsp;&nbsp;&nbsp; </strong></span>
+        <button class="button-17-selected" role="button" id="btn_3DGS_method" onclick="changeMethodFLIP('3DGS')">3DGS</button>
+        <button class="button-17" role="button" id="btn_DropGaussian_method" onclick="changeMethodFLIP('DropGaussian')">DropGaussian</button>
+        <button class="button-17" role="button" id="btn_CoR-GS_method" onclick="changeMethodFLIP('CoR-GS')">CoR-GS</button>
+      </div>
+      
+      <script>
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('flipvideo').onplay = function() {
+              resizeAndPlay(this);
+            };
+          });
+        } else {
+          document.getElementById('flipvideo').onplay = function() {
+            resizeAndPlay(this);
+          };
+        }
+      </script>
+      </div>
+  </section>
 
 
 
@@ -265,7 +234,7 @@
 
 
 
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{2025robustsplat,
@@ -275,7 +244,7 @@
       year      = {2025},
     }</code></pre>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
